@@ -5,7 +5,7 @@ class HomeController {
   static async index(req, res) {
     try {
       const keyword = req.body?.keyword;
-      const books = await BookService.findAll({ keyword });
+      const books = await BookService.findAll(keyword);
 
       render(res, {
         page: 'home/index',

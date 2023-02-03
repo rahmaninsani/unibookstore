@@ -17,8 +17,21 @@
         <li class="nav-item">
           <a class="nav-link<%= page.includes('home') ? ' active' : ''%>" href="/home">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link<%= page.includes('admin') ? ' active' : ''%>" href="/admin">Admin</a>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle<%= page.includes('admin') ? ' active' : ''%>"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Admin
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/admin/buku">Kelola Buku</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="/admin/penerbit">Kelola Penerbit</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link<%= page.includes('pengadaan') ? ' active' : ''%>" href="/pengadaan">Pengadaan</a>

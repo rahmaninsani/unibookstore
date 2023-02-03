@@ -1,0 +1,46 @@
+<section id="admin-books">
+  <div class="container mt-5 px-3 py-5">
+    <div class="row justify-content-between mb-3">
+      <div class="col-4">
+        <h1>Daftar Buku</h1>
+      </div>
+      <div class="col-4 text-end">
+        <a href="/admin/buku/tambah" class="btn btn-primary">Tambah Buku</a>
+      </div>
+    </div>
+
+    <div id="books">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">ID Buku</th>
+            <th scope="col">Kategori</th>
+            <th scope="col">Nama Buku</th>
+            <th scope="col">Harga</th>
+            <th scope="col">Stok</th>
+            <th scope="col">Penerbit</th>
+            <th scope="col">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.books.map((book, index) => { %>
+          <tr>
+            <th scope="row"><%= index+1 %></th>
+            <td><%= book.code %></td>
+            <td><%= book.category %></td>
+            <td><%= book.title %></td>
+            <td><%= new Intl.NumberFormat("id-ID").format(book.price); %></td>
+            <td><%= book.stock %></td>
+            <td><%= book.publisherName %></td>
+            <td>
+              <a href="/admin/buku/<%= book.code %>/edit" class="btn btn-sm btn-warning">Edit</a>
+              <a href="/admin/buku/<%= book.code %>/delete" class="btn btn-sm btn-danger">Hapus</a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
