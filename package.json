@@ -1,0 +1,19 @@
+{
+  "name": "unibookstore",
+  "version": "1.0.0",
+  "description": "Uji Kompetensi Junior Web Programmer",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon -e js,ejs index.js",
+    "db-create": "sequelize-cli db:create",
+    "table-create": "sequelize-cli db:migrate",
+    "table-drop": "sequelize-cli db:migrate:undo:all",
+    "row-insert": "sequelize-cli db:seed:all",
+    "row-delete": "sequelize-cli db:seed:undo:all",
+    "db-reset": "sequelize-cli db:migrate:undo:all && sequelize-cli db:migrate && sequelize-cli db:seed:all"
+  },
+  "keywords": [],
+  "author": "Rahman Insani <rahmaninsani54@gmail.com>",
+  "license": "MIT"
+}
