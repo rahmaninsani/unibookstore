@@ -1,26 +1,11 @@
+const { BookService } = require('../services');
 const { render } = require('../utils');
 
 class HomeController {
   static async index(req, res) {
     try {
-      const books = [
-        {
-          id: 'K1001',
-          category: 'Keilmuan',
-          title: 'Harry Potter',
-          price: '100000',
-          stock: '10',
-          publisher: 'Gramedia',
-        },
-        {
-          id: 'K1002',
-          category: 'Keilmuan',
-          title: 'Harry Potter 2',
-          price: '100000',
-          stock: '10',
-          publisher: 'Gramedia',
-        },
-      ];
+      const books = await BookService.findAll();
+      console.log(books);
 
       render(res, {
         page: 'home/index',
