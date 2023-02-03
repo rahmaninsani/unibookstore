@@ -4,7 +4,7 @@ const { Book, Publisher } = require('../models');
 const Service = require('./service');
 
 class BookService extends Service {
-  static async findAll() {
+  static async findAll({ keyword }) {
     const options = {
       attributes: {
         exclude: ['id', 'idPublisher', 'id_publisher'],
@@ -17,6 +17,12 @@ class BookService extends Service {
         },
       ],
     };
+
+    if (keyword) {
+      options.where = {
+        title: { [sequelize.Op.substring]: keyword },
+      };
+    }
 
     return await super.findAll(options);
   }
