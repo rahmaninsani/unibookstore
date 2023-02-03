@@ -4,8 +4,22 @@ class HomeController {
   static async index(req, res) {
     try {
       const books = [
-        { id: '1', title: 'Harry Potter' },
-        { id: '2', title: 'Lord of the Ring' },
+        {
+          id: 'K1001',
+          category: 'Keilmuan',
+          title: 'Harry Potter',
+          price: '100000',
+          stock: '10',
+          publisher: 'Gramedia',
+        },
+        {
+          id: 'K1002',
+          category: 'Keilmuan',
+          title: 'Harry Potter 2',
+          price: '100000',
+          stock: '10',
+          publisher: 'Gramedia',
+        },
       ];
 
       render(res, {
