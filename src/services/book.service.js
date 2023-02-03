@@ -27,6 +27,26 @@ class BookService extends Service {
     return await super.findAll(options);
   }
 
+  static async findOne(code) {
+    const options = {
+      attributes: {
+        exclude: ['id', 'idPublisher', 'id_publisher'],
+        include: [[sequelize.col('Publisher.name'), 'publisherName']],
+      },
+      include: [
+        {
+          model: Publisher,
+          attributes: [],
+        },
+      ],
+      where: {
+        code,
+      },
+    };
+
+    return await super.findOne(options);
+  }
+
   static async create(book, transaction) {
     const payload = {
       code: book.code,
@@ -42,6 +62,25 @@ class BookService extends Service {
     };
 
     return await super.create(payload, options);
+  }
+
+  static async update(book, transaction) {
+    const payload = {
+      category: book.category,
+      title: book.title,
+      price: book.price,
+      stock: book.stock,
+      idPublisher: book.idPublisher,
+    };
+
+    const options = {
+      where: {
+        code: book.code,
+      },
+      transaction,
+    };
+
+    return await super.update(payload, options);
   }
 }
 
