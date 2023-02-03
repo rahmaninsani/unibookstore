@@ -82,6 +82,17 @@ class BookService extends Service {
 
     return await super.update(payload, options);
   }
+
+  static async delete(code, transaction) {
+    const options = {
+      where: {
+        code,
+      },
+      transaction,
+    };
+
+    return await super.delete(options);
+  }
 }
 
 BookService.model = Book;

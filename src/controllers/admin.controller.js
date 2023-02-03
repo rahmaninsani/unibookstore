@@ -80,20 +80,36 @@ class AdminController {
   static async simpanEditBuku(req, res) {
     const transaction = await sequelize.transaction();
 
-    // try {
-    const reqBody = req.body;
-    const { id: idPublisher } = await PublisherService.findOneByCode(reqBody.publisher);
+    try {
+      const reqBody = req.body;
+      const { id: idPublisher } = await PublisherService.findOneByCode(reqBody.publisher);
 
-    const { bookCode } = req.params;
+      const { bookCode } = req.params;
 
-    await BookService.update({ bookCode, ...reqBody, idPublisher }, transaction);
+      await BookService.update({ bookCode, ...reqBody, idPublisher }, transaction);
 
-    await transaction.commit();
-    res.redirect('/admin/buku');
-    // } catch (error) {
-    //   transaction.rollback();
-    //   throw error;
-    // }
+      await transaction.commit();
+      res.redirect('/admin/buku');
+    } catch (error) {
+      transaction.rollback();
+      throw error;
+    }
+  }
+
+  static async hapusBuku(req, res) {
+    const transaction = await sequelize.transaction();
+
+    try {
+      const { bookCode } = req.params;
+
+      await BookService.delete(bookCode, transaction);
+
+      await transaction.commit();
+      res.redirect('/admin/buku');
+    } catch (error) {
+      transaction.rollback();
+      throw error;
+    }
   }
 }
 

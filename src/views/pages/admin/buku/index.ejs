@@ -35,7 +35,10 @@
             <td><%= book.publisherName %></td>
             <td>
               <a href="/admin/buku/<%= book.code %>/edit" class="btn btn-sm btn-warning">Edit</a>
-              <a href="/admin/buku/<%= book.code %>/delete" class="btn btn-sm btn-danger">Hapus</a>
+              <form class="d-inline" method="POST" action="/admin/buku/<%= book.code %>?_method=DELETE">
+                <input type="hidden" name="_method" value="DELETE" />
+                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+              </form>
             </td>
           </tr>
           <% }) %>
