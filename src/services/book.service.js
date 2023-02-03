@@ -93,6 +93,25 @@ class BookService extends Service {
 
     return await super.delete(options);
   }
+
+  static async findSmallestStock() {
+    const options = {
+      attributes: {
+        exclude: ['id', 'idPublisher', 'id_publisher'],
+        include: [[sequelize.col('Publisher.name'), 'publisherName']],
+      },
+      include: [
+        {
+          model: Publisher,
+          attributes: [],
+        },
+      ],
+      order: [['stock', 'ASC']],
+      limit: 1,
+    };
+
+    return await super.findAll(options);
+  }
 }
 
 BookService.model = Book;
