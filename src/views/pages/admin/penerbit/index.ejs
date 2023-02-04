@@ -34,7 +34,7 @@
               <a href="/admin/penerbit/<%= publisher.code %>/edit" class="btn btn-sm btn-warning">Edit</a>
               <form class="d-inline" method="POST" action="/admin/penerbit/<%= publisher.code %>?_method=DELETE">
                 <input type="hidden" name="_method" value="DELETE" />
-                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                <button type="submit" class="btn btn-sm btn-danger" onClick="return confirm('Hapus?')">Hapus</button>
               </form>
             </td>
           </tr>
